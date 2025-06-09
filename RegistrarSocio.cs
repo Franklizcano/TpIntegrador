@@ -146,11 +146,11 @@ namespace TpIntegrador
 
         private void btnRegistrar_Click(object sender, EventArgs e)
         {
-            
+
             // Se valida que ningun textbox esté vacío o tiene el texto default
             if (txtNombre.Text == "Nombre" || txtApellido.Text == "Apellido" || txtDNI.Text == "DNI" || txtDomicilio.Text == "Domicilio" || txtTelefono.Text == "Telefono" || txtEmail.Text == "Email" || txtMonto.Text == "Monto" || cbMetodoPago.Text == "" || checkApto.Checked == false)
             {
-                MessageBox.Show("Por favor, complete todos los campos.","Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Por favor, complete todos los campos.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
             Socios socios = new Socios();
@@ -172,7 +172,7 @@ namespace TpIntegrador
                         dateTimePicker1.Value.Date
                     );
 
-                    
+
                     int idSocio = socios.RegistrarSocio(socio);
                     PagoSocio pagoSocio = new PagoSocio(float.Parse(txtMonto.Text), cbMetodoPago.Text, idSocio);
 
@@ -187,6 +187,26 @@ namespace TpIntegrador
                     MessageBox.Show("Ha ocurrido un error durante el guardado de datos. Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
+        }
+
+        private void btnCerrar_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void label9_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtDNI_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
