@@ -24,7 +24,7 @@ namespace TpIntegrador.Datos
             this.servidor = "localhost";
             this.puerto = "3306";
             this.usuario = "root";
-            this.clave = "ASDqwe123";
+            this.clave = "12345678";
         }
         // proceso de interacción
         public MySqlConnection CrearConexion()

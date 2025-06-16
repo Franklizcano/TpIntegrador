@@ -50,6 +50,8 @@
             label7 = new Label();
             label8 = new Label();
             label9 = new Label();
+            label10 = new Label();
+            label11 = new Label();
             SuspendLayout();
             // 
             // txtNombre
@@ -58,8 +60,6 @@
             txtNombre.Name = "txtNombre";
             txtNombre.Size = new Size(399, 25);
             txtNombre.TabIndex = 0;
-            txtNombre.Enter += ocultarNombre;
-            txtNombre.Leave += mostrarNombre;
             // 
             // txtApellido
             // 
@@ -67,8 +67,6 @@
             txtApellido.Name = "txtApellido";
             txtApellido.Size = new Size(399, 25);
             txtApellido.TabIndex = 1;
-            txtApellido.Enter += ocultarApellido;
-            txtApellido.Leave += mostrarApellido;
             // 
             // txtDNI
             // 
@@ -76,10 +74,6 @@
             txtDNI.Name = "txtDNI";
             txtDNI.Size = new Size(134, 25);
             txtDNI.TabIndex = 2;
-            txtDNI.Text = "DNI";
-            txtDNI.TextChanged += txtDNI_TextChanged;
-            txtDNI.Enter += ocultarDNI;
-            txtDNI.Leave += mostrarDNI;
             // 
             // dateTimePicker1
             // 
@@ -92,7 +86,7 @@
             // lblFechaDeNac
             // 
             lblFechaDeNac.AutoSize = true;
-            lblFechaDeNac.Location = new Point(366, 129);
+            lblFechaDeNac.Location = new Point(370, 129);
             lblFechaDeNac.Name = "lblFechaDeNac";
             lblFechaDeNac.Size = new Size(141, 19);
             lblFechaDeNac.TabIndex = 4;
@@ -104,8 +98,6 @@
             txtDomicilio.Name = "txtDomicilio";
             txtDomicilio.Size = new Size(399, 25);
             txtDomicilio.TabIndex = 5;
-            txtDomicilio.Enter += ocultarDomicilio;
-            txtDomicilio.Leave += mostrarDomicilio;
             // 
             // txtTelefono
             // 
@@ -113,9 +105,6 @@
             txtTelefono.Name = "txtTelefono";
             txtTelefono.Size = new Size(178, 25);
             txtTelefono.TabIndex = 6;
-            txtTelefono.Text = "Telefono";
-            txtTelefono.Enter += ocultarTelefono;
-            txtTelefono.Leave += mostrarTelefono;
             // 
             // txtEmail
             // 
@@ -123,9 +112,6 @@
             txtEmail.Name = "txtEmail";
             txtEmail.Size = new Size(178, 25);
             txtEmail.TabIndex = 7;
-            txtEmail.Text = "Email";
-            txtEmail.Enter += ocultarEmail;
-            txtEmail.Leave += mostrarEmail;
             // 
             // checkApto
             // 
@@ -156,7 +142,7 @@
             // 
             cbMetodoPago.FormattingEnabled = true;
             cbMetodoPago.Items.AddRange(new object[] { "Efectivo", "3 cuotas", "6 cuotas" });
-            cbMetodoPago.Location = new Point(295, 345);
+            cbMetodoPago.Location = new Point(292, 345);
             cbMetodoPago.Name = "cbMetodoPago";
             cbMetodoPago.Size = new Size(121, 25);
             cbMetodoPago.TabIndex = 10;
@@ -164,21 +150,18 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(154, 348);
+            label1.Location = new Point(151, 348);
             label1.Name = "label1";
-            label1.Size = new Size(112, 19);
+            label1.Size = new Size(119, 19);
             label1.TabIndex = 11;
-            label1.Text = "Método de pago";
+            label1.Text = "Método de pago :";
             // 
             // txtMonto
             // 
-            txtMonto.Location = new Point(453, 345);
+            txtMonto.Location = new Point(292, 390);
             txtMonto.Name = "txtMonto";
-            txtMonto.Size = new Size(100, 25);
+            txtMonto.Size = new Size(121, 25);
             txtMonto.TabIndex = 12;
-            txtMonto.Text = "Monto";
-            txtMonto.Enter += ocultarMonto;
-            txtMonto.Leave += mostrarMonto;
             // 
             // label2
             // 
@@ -220,7 +203,6 @@
             label4.Size = new Size(65, 19);
             label4.TabIndex = 16;
             label4.Text = "Apellido :";
-            label4.Click += label4_Click;
             // 
             // label5
             // 
@@ -266,13 +248,33 @@
             label9.Size = new Size(73, 19);
             label9.TabIndex = 21;
             label9.Text = "Apto físico";
-            label9.Click += label9_Click;
+            // 
+            // label10
+            // 
+            label10.AutoSize = true;
+            label10.Location = new Point(151, 390);
+            label10.Name = "label10";
+            label10.Size = new Size(58, 19);
+            label10.TabIndex = 22;
+            label10.Text = "Monto :";
+            // 
+            // label11
+            // 
+            label11.AutoSize = true;
+            label11.Font = new Font("Segoe UI", 13F);
+            label11.Location = new Point(354, 290);
+            label11.Name = "label11";
+            label11.Size = new Size(192, 25);
+            label11.TabIndex = 23;
+            label11.Text = "Pago de primera cuota";
             // 
             // formSocio
             // 
             AutoScaleDimensions = new SizeF(7F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(938, 510);
+            Controls.Add(label11);
+            Controls.Add(label10);
             Controls.Add(label9);
             Controls.Add(label8);
             Controls.Add(label7);
@@ -328,5 +330,7 @@
         private Label label7;
         private Label label8;
         private Label label9;
+        private Label label10;
+        private Label label11;
     }
 }

@@ -10,35 +10,34 @@ using TpIntegrador.Entidades;
 
 namespace TpIntegrador.Datos
 {
-    internal class Socios
+    internal class NoSocios
     {
-        public int RegistrarSocio(Socio socio)
+        public int RegistrarNoSocio(NoSocio noSocio)
         {
             MySqlConnection conexion = Conexion.getInstancia().CrearConexion();
             try
             {
                 conexion.Open();
                 MySqlCommand comando = new MySqlCommand(
-                            "INSERT INTO socios (nombre, apellido, dni, telefono, email, domicilio, apto_fisico, fecha_alta, fecha_nacimiento) " +
-                            "VALUES (@nombre, @apellido, @dni, @telefono, @email, @domicilio, @aptoFisico, @fechaAlta, @fechaNacimiento); " +
+                            "INSERT INTO nosocios (nombre, apellido, dni, telefono, email, domicilio, fecha_nacimiento) " +
+                            "VALUES (@nombre, @apellido, @dni, @telefono, @email, @domicilio, @fechaNacimiento); " +
                             "SELECT LAST_INSERT_ID();", conexion);
                 
-                comando.Parameters.AddWithValue("@nombre", socio.Nombre);
-                comando.Parameters.AddWithValue("@apellido", socio.Apellido);
-                comando.Parameters.AddWithValue("@dni", socio.Dni);
-                comando.Parameters.AddWithValue("@telefono", socio.Telefono);
-                comando.Parameters.AddWithValue("@email", socio.Email);
-                comando.Parameters.AddWithValue("@domicilio", socio.Domicilio);
-                comando.Parameters.AddWithValue("@aptoFisico", socio.AptoFisico);
-                comando.Parameters.AddWithValue("@fechaNacimiento", socio.FechaNacimiento.Date);
-                comando.Parameters.AddWithValue("@fechaAlta", socio.FechaAlta);
+                comando.Parameters.AddWithValue("@nombre", noSocio.Nombre);
+                comando.Parameters.AddWithValue("@apellido", noSocio.Apellido);
+                comando.Parameters.AddWithValue("@dni", noSocio.Dni);
+                comando.Parameters.AddWithValue("@telefono", noSocio.Telefono);
+                comando.Parameters.AddWithValue("@email", noSocio.Email);
+                comando.Parameters.AddWithValue("@domicilio", noSocio.Domicilio);
+                comando.Parameters.AddWithValue("@fechaNacimiento", noSocio.FechaNacimiento.Date);
+                //comando.Parameters.AddWithValue("@fechaAlta", socio.FechaAlta);
 
                 object result = comando.ExecuteScalar();
                 return Convert.ToInt32(result);
             }
             catch (Exception ex)
             {
-                throw new Exception("Error al registrar el socio: " + ex.Message);
+                throw new Exception("Error al registrar el no socio: " + ex.Message);
             }
             finally
             {
@@ -49,21 +48,21 @@ namespace TpIntegrador.Datos
             }
         }
 
-        public int ExisteSocio(int DNI)
+        public int ExisteNoSocio(int DNI)
         {
             MySqlConnection conexion = Conexion.getInstancia().CrearConexion();
             try
             {
                 conexion.Open();
                 MySqlCommand comando = new MySqlCommand(
-                    "SELECT COUNT(*) FROM socios WHERE dni = @dni", conexion);
+                    "SELECT COUNT(*) FROM nosocios WHERE dni = @dni", conexion);
                 comando.Parameters.AddWithValue("@dni", DNI);
                 int count = Convert.ToInt32(comando.ExecuteScalar());
                 return count;
             }
             catch (Exception ex)
             {
-                throw new Exception("Error al verificar la existencia del socio: " + ex.Message);
+                throw new Exception("Error al verificar la existencia del no socio: " + ex.Message);
             }
             finally
             {
@@ -74,21 +73,21 @@ namespace TpIntegrador.Datos
             }
         }
 
-        public Socio ObtenerSocio(int DNI)
+        public NoSocio ObtenerNoSocio(int DNI)
         {
             MySqlConnection conexion = Conexion.getInstancia().CrearConexion();
             try
             {
                 conexion.Open();
                 MySqlCommand comando = new MySqlCommand(
-                    "SELECT * FROM socios WHERE dni = @dni", conexion);
+                    "SELECT * FROM nosocios WHERE dni = @dni", conexion);
                 comando.Parameters.AddWithValue("@dni", DNI);
 
                 using (var reader = comando.ExecuteReader())
                 {
                     if (reader.Read())
                     {
-                        Socio socio = new Socio(
+                        NoSocio noSocio = new NoSocio(
                             Convert.ToInt32(reader["id"]),
                             reader["nombre"].ToString(),
                             reader["apellido"].ToString(),
@@ -97,10 +96,8 @@ namespace TpIntegrador.Datos
                             reader["domicilio"].ToString(),
                             reader["email"].ToString(),
                             Convert.ToDateTime(reader["fecha_nacimiento"])
-                        );
-                        socio.AptoFisico = Convert.ToBoolean(reader["apto_fisico"]);
-                        socio.FechaAlta = Convert.ToDateTime(reader["fecha_alta"]);
-                        return socio;
+                    );
+                        return noSocio;
                     }
                     else
                     {

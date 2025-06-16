@@ -107,6 +107,7 @@
             btnInstallment.TabIndex = 2;
             btnInstallment.Text = "Cobrar Cuota";
             btnInstallment.UseVisualStyleBackColor = true;
+            btnInstallment.Click += btnInstallment_Click;
             // 
             // btnList
             // 
@@ -124,6 +125,7 @@
             btnList.TabIndex = 3;
             btnList.Text = "Cuotas Vencidas";
             btnList.UseVisualStyleBackColor = true;
+            btnList.Click += btnList_Click;
             // 
             // lbl_title
             // 
@@ -166,7 +168,6 @@
             MenuVertical.Name = "MenuVertical";
             MenuVertical.Size = new Size(250, 650);
             MenuVertical.TabIndex = 6;
-            MenuVertical.Paint += MenuVertical_Paint;
             // 
             // logoChico
             // 
@@ -178,7 +179,6 @@
             logoChico.TabIndex = 7;
             logoChico.TabStop = false;
             logoChico.Visible = false;
-            logoChico.Click += logoChico_Click;
             logoChico.MouseDown += logoChico_MouseDown;
             // 
             // logoGrande
@@ -206,7 +206,6 @@
             BarraTitulo.Name = "BarraTitulo";
             BarraTitulo.Size = new Size(1050, 50);
             BarraTitulo.TabIndex = 7;
-            BarraTitulo.Paint += BarraTitulo_Paint;
             BarraTitulo.MouseDown += BarraTitulo_MouseDown;
             // 
             // iconminimizar

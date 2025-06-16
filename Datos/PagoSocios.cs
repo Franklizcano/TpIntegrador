@@ -37,5 +37,50 @@ namespace TpIntegrador.Datos
                 }
             }
         }
+
+        public PagoSocio ObtenerUltimoPagoSocio(int? idSocio)
+        {
+            if(idSocio == null)
+            {
+                MessageBox.Show("idSocio es nulo!. Error: ", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            MySqlConnection conexion = Conexion.getInstancia().CrearConexion();
+            try
+            {
+                conexion.Open();
+                MySqlCommand comando = new MySqlCommand("SELECT * FROM pagosocio WHERE id_socio = @idSocio ORDER BY fecha_pago DESC limit 1", conexion);
+                comando.Parameters.AddWithValue("@idSocio", idSocio);
+                using (var reader = comando.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        PagoSocio pagoSocio = new PagoSocio(
+                            Convert.ToSingle(reader["monto_pago"]),
+                            reader["metodo_pago"].ToString(),
+                            Convert.ToInt32(reader["id_socio"])
+                        );
+                        pagoSocio.FechaVencimiento = Convert.ToDateTime(reader["fecha_vencimiento"]);
+                        pagoSocio.FechaPago = Convert.ToDateTime(reader["fecha_pago"]);
+                        return pagoSocio;
+                    }
+                    else
+                    {
+                        return null;
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al obtener el último pago del socio: " + ex.Message);
+            }
+            finally
+            {
+                if (conexion.State == ConnectionState.Open)
+                {
+                    conexion.Close();
+                }
+            }
+        }
     }
 }

@@ -38,9 +38,15 @@ namespace TpIntegrador
 
         private void btn_register_Click(object sender, EventArgs e)
         {
-            //formSocio formSocio = new formSocio();
-            //formSocio.ShowDialog();
-            AbrirFormInPanel(new formSocio());
+            DialogResult resultado = MessageBox.Show("¿Quieres registrar un socio?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (resultado == DialogResult.Yes)
+            {
+                AbrirFormInPanel(new formSocio());
+            }
+            else
+            {
+                AbrirFormInPanel(new formNoSocio());
+            }
         }
 
         private void btn_salir_Click(object sender, EventArgs e)
@@ -66,16 +72,12 @@ namespace TpIntegrador
 
         private void iconcerrar_Click(object sender, EventArgs e)
         {
-            
-            if(MessageBox.Show("¿Seguro que quieres salir?", "Advertencia", MessageBoxButtons.YesNo) == DialogResult.Yes)  
+
+            if (MessageBox.Show("¿Seguro que quieres salir?", "Advertencia", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
                 Application.Exit();
             }
-            else
-            {
 
-            }
-            
         }
 
         int LX, LY;
@@ -110,26 +112,6 @@ namespace TpIntegrador
             SendMessage(this.Handle, 0x112, 0xf012, 0);
         }
 
-        private void logoChico_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void BarraTitulo_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void MenuVertical_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void MenuVertical_MouseDown(object sender, MouseEventArgs e)
-        {
-
-        }
-
         private void logoGrande_MouseDown(object sender, MouseEventArgs e)
         {
             ReleaseCapture();
@@ -142,5 +124,14 @@ namespace TpIntegrador
             SendMessage(this.Handle, 0x112, 0xf012, 0);
         }
 
+        private void btnInstallment_Click(object sender, EventArgs e)
+        {
+            AbrirFormInPanel(new formCobroCuota());
+        }
+
+        private void btnList_Click(object sender, EventArgs e)
+        {
+            AbrirFormInPanel(new formCuotasVencidas());
+        }
     }
 }
