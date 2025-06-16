@@ -12,9 +12,9 @@ using TpIntegrador.Entidades;
 
 namespace TpIntegrador
 {
-    public partial class formSocio : Form
+    public partial class formNoSocio : Form
     {
-        public formSocio()
+        public formNoSocio()
         {
             InitializeComponent();
         }
@@ -28,21 +28,20 @@ namespace TpIntegrador
             txtTelefono.Text = "";
             txtEmail.Text = "";
             txtMonto.Text = "";
+            txtActividad.Text = "";
             cbMetodoPago.Text = "";
-            checkApto.Checked = false;
         }
 
         private void btnRegistrar_Click(object sender, EventArgs e)
         {
-
             // Se valida que ningun textbox esté vacío o tiene el texto default
-            if (txtNombre.Text == "" || txtApellido.Text == "" || txtDNI.Text == "" || txtDomicilio.Text == "" || txtTelefono.Text == "" || txtEmail.Text == "" || txtMonto.Text == "" || cbMetodoPago.Text == "" || checkApto.Checked == false)
+            if (txtNombre.Text == "" || txtApellido.Text == "" || txtDNI.Text == "" || txtDomicilio.Text == "" || txtTelefono.Text == "" || txtEmail.Text == "" || txtMonto.Text == "" || cbMetodoPago.Text == "" || txtActividad.Text == "")
             {
                 MessageBox.Show("Por favor, complete todos los campos.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            Socios socios = new Socios();
-            if (socios.ExisteSocio(Convert.ToInt32(txtDNI.Text)) > 0)
+            NoSocios noSocios = new NoSocios();
+            if (noSocios.ExisteNoSocio(Convert.ToInt32(txtDNI.Text)) > 0)
             {
                 MessageBox.Show("El DNI ingresado ya está registrado como socio.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -50,7 +49,7 @@ namespace TpIntegrador
             {
                 try
                 {
-                    Socio socio = new Socio(
+                    NoSocio noSocio = new NoSocio(
                         null, // El ID se asigna automáticamente en la base de datos
                         txtNombre.Text,
                         txtApellido.Text,
@@ -62,11 +61,11 @@ namespace TpIntegrador
                     );
 
 
-                    int idSocio = socios.RegistrarSocio(socio);
-                    PagoSocio pagoSocio = new PagoSocio(float.Parse(txtMonto.Text), cbMetodoPago.Text, idSocio);
+                    int idNoSocio = noSocios.RegistrarNoSocio(noSocio);
+                    PagoNoSocio pagoNoSocio = new PagoNoSocio(float.Parse(txtMonto.Text), cbMetodoPago.Text, idNoSocio, txtActividad.Text);
 
-                    PagoSocios pagoSocios = new PagoSocios();
-                    pagoSocios.RegistrarPagoSocio(pagoSocio);
+                    PagoNoSocios pagoNoSocios = new PagoNoSocios();
+                    pagoNoSocios.RegistrarPagoNoSocio(pagoNoSocio);
                     MessageBox.Show("Socio y pago registrado con éxito.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     limpiarCampos();
 
@@ -76,11 +75,6 @@ namespace TpIntegrador
                     MessageBox.Show("Ha ocurrido un error durante el guardado de datos. Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
-        }
-
-        private void btnCerrar_Click(object sender, EventArgs e)
-        {
-            this.Close();
         }
     }
 }

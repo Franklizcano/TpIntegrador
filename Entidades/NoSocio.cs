@@ -6,11 +6,9 @@ using System.Threading.Tasks;
 
 namespace TpIntegrador.Entidades
 {
-    public class Socio : Persona
+    public class NoSocio : Persona
     {
-        public bool AptoFisico { get; set; } = true;
-        public DateTime FechaAlta { get; set; } = DateTime.Now;
-        public Socio(
+        public NoSocio(
             int? id,
             string nombre,
             string apellido,

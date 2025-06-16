@@ -8,6 +8,7 @@ namespace TpIntegrador.Entidades
 {
     public abstract class Persona
     {
+        public int? Id { get; set; }
         public string Nombre { get; set; }
         public string Apellido { get; set; }
         public int Dni { get; set; }
@@ -15,8 +16,9 @@ namespace TpIntegrador.Entidades
         public long Telefono { get; set; }
         public string Domicilio { get; set; }
         public string Email { get; set; }
-        public Persona(string nombre, string apellido, int dni, long telefono, string domicilio, string email, DateTime fechaNacimiento)
+        public Persona(int? id, string nombre, string apellido, int dni, long telefono, string domicilio, string email, DateTime fechaNacimiento)
         {
+            Id = id;
             Nombre = nombre;
             Apellido = apellido;
             Dni = dni;
