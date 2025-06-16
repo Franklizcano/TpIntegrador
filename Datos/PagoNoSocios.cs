@@ -20,7 +20,6 @@ namespace TpIntegrador.Datos
                 MySqlCommand comando = new MySqlCommand("INSERT INTO pagonosocio (fecha_pago, monto_pago, metodo_pago, id_no_socio, actividad) VALUES (@fechaPago, @montoPago, @metodoPago, @idNoSocio, @actividad)", conexion);
                 comando.Parameters.AddWithValue("@montoPago", pagoNoSocio.MontoPago);
                 comando.Parameters.AddWithValue("@metodoPago", pagoNoSocio.MetodoPago);
-                //comando.Parameters.AddWithValue("@fechaVencimiento", pagoNoSocio.FechaVencimiento);
                 comando.Parameters.AddWithValue("@fechaPago", pagoNoSocio.FechaPago);
                 comando.Parameters.AddWithValue("@idNoSocio", pagoNoSocio.IdNoSocio);
                 comando.Parameters.AddWithValue("@actividad", pagoNoSocio.Actividad);
