@@ -34,10 +34,12 @@
             txtUsuario = new TextBox();
             txtPassword = new TextBox();
             panel1 = new Panel();
+            label5 = new Label();
+            label4 = new Label();
+            label3 = new Label();
             pictureBox3 = new PictureBox();
             label1 = new Label();
             label2 = new Label();
-            linkpass = new LinkLabel();
             btncerrar = new PictureBox();
             btnminimizar = new PictureBox();
             panel1.SuspendLayout();
@@ -104,6 +106,9 @@
             // panel1
             // 
             panel1.BackColor = Color.FromArgb(55, 53, 54);
+            panel1.Controls.Add(label5);
+            panel1.Controls.Add(label4);
+            panel1.Controls.Add(label3);
             panel1.Controls.Add(pictureBox3);
             panel1.Dock = DockStyle.Left;
             panel1.Location = new Point(0, 0);
@@ -112,10 +117,46 @@
             panel1.TabIndex = 6;
             panel1.MouseDown += panel1_MouseDown;
             // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Font = new Font("Century Gothic", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label5.ForeColor = Color.FromArgb(247, 152, 52);
+            label5.Location = new Point(97, 229);
+            label5.Name = "label5";
+            label5.Size = new Size(47, 25);
+            label5.TabIndex = 14;
+            label5.Text = "DEL";
+            label5.Click += label5_Click;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Font = new Font("Century Gothic", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label4.ForeColor = Color.FromArgb(247, 152, 52);
+            label4.Location = new Point(30, 254);
+            label4.Name = "label4";
+            label4.Size = new Size(185, 25);
+            label4.TabIndex = 13;
+            label4.Text = "CLUB DEPORTIVO";
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.BackColor = Color.FromArgb(55, 53, 54);
+            label3.Font = new Font("Century Gothic", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label3.ForeColor = Color.FromArgb(247, 152, 52);
+            label3.Location = new Point(12, 204);
+            label3.Name = "label3";
+            label3.Size = new Size(222, 25);
+            label3.TabIndex = 12;
+            label3.Text = "SISTEMA DE GESTIÓN";
+            label3.TextAlign = ContentAlignment.MiddleCenter;
+            // 
             // pictureBox3
             // 
             pictureBox3.Image = (Image)resources.GetObject("pictureBox3.Image");
-            pictureBox3.Location = new Point(0, 70);
+            pictureBox3.Location = new Point(0, 26);
             pictureBox3.Name = "pictureBox3";
             pictureBox3.Size = new Size(247, 175);
             pictureBox3.SizeMode = PictureBoxSizeMode.Zoom;
@@ -143,19 +184,6 @@
             label2.Size = new Size(440, 1);
             label2.TabIndex = 8;
             label2.Text = "label2";
-            // 
-            // linkpass
-            // 
-            linkpass.ActiveLinkColor = Color.FromArgb(0, 122, 204);
-            linkpass.AutoSize = true;
-            linkpass.Font = new Font("Century Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            linkpass.LinkColor = Color.DarkGray;
-            linkpass.Location = new Point(414, 285);
-            linkpass.Name = "linkpass";
-            linkpass.Size = new Size(199, 17);
-            linkpass.TabIndex = 0;
-            linkpass.TabStop = true;
-            linkpass.Text = "¿Ha olvidado su contraseña?";
             // 
             // btncerrar
             // 
@@ -189,7 +217,6 @@
             ClientSize = new Size(780, 330);
             Controls.Add(btnminimizar);
             Controls.Add(btncerrar);
-            Controls.Add(linkpass);
             Controls.Add(label2);
             Controls.Add(label1);
             Controls.Add(panel1);
@@ -198,6 +225,7 @@
             Controls.Add(btn_login);
             Controls.Add(lbl_title);
             FormBorderStyle = FormBorderStyle.None;
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "formLogin";
             Opacity = 0.9D;
             StartPosition = FormStartPosition.CenterScreen;
@@ -205,6 +233,7 @@
             Load += formLogin_Load;
             MouseDown += formLogin_MouseDown;
             panel1.ResumeLayout(false);
+            panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
             ((System.ComponentModel.ISupportInitialize)btncerrar).EndInit();
             ((System.ComponentModel.ISupportInitialize)btnminimizar).EndInit();
@@ -221,9 +250,11 @@
         private Panel panel1;
         private Label label1;
         private Label label2;
-        private LinkLabel linkpass;
         private PictureBox btncerrar;
         private PictureBox pictureBox3;
         private PictureBox btnminimizar;
+        private Label label4;
+        private Label label3;
+        private Label label5;
     }
 }

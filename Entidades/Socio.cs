@@ -10,6 +10,7 @@ namespace TpIntegrador.Entidades
     {
         public bool AptoFisico { get; set; } = true;
         public DateTime FechaAlta { get; set; } = DateTime.Now;
+        public bool CarnetEntregado { get; set; }
         public Socio(
             int? id,
             string nombre,

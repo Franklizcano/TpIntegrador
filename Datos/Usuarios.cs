@@ -16,7 +16,9 @@ namespace TpIntegrador.Datos
             try
             {
                 conexion.Open();
-                MySqlCommand comando = new MySqlCommand("SELECT * FROM usuarios WHERE usuario = @usuario AND password = @password", conexion);
+                MySqlCommand comando = new MySqlCommand(
+                    "SELECT * FROM usuarios WHERE LOWER(usuario) = LOWER(@usuario) AND LOWER(password) = LOWER(@password)", 
+                    conexion);
                 comando.Parameters.AddWithValue("@usuario", usuario);
                 comando.Parameters.AddWithValue("@password", clave);
 
