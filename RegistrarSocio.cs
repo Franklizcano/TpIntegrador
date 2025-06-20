@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -67,7 +68,18 @@ namespace TpIntegrador
 
                     PagoSocios pagoSocios = new PagoSocios();
                     pagoSocios.RegistrarPagoSocio(pagoSocio);
-                    MessageBox.Show("Socio y pago registrado con éxito.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    frmFactura factura = new frmFactura
+                    {
+                        NombrePersona = txtNombre.Text + " " + txtApellido.Text,
+                        Actividad = "Cuota Mensual",
+                        Monto = float.Parse(txtMonto.Text),
+                        FormaPago = cbMetodoPago.Text
+                    };
+                    factura.ShowDialog();
+
+
+                    MessageBox.Show("Socio y Pago Registrado Con Éxito.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     limpiarCampos();
 
                 }
@@ -81,6 +93,48 @@ namespace TpIntegrador
         private void btnCerrar_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void formSocio_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtDNI_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtTelefono_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtMonto_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Obtener el separador decimal de la configuración regional actual
+            char decimalSeparator = CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator[0];
+
+            // 1. Permitir dígitos (0-9)
+            // 2. Permitir teclas de control (como Backspace, Delete, flechas, etc.)
+            // 3. Permitir el separador decimal (punto o coma, según la cultura)
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar) && e.KeyChar != decimalSeparator)
+            {
+                e.Handled = true; // Si no es un dígito, control o el separador decimal, ignorar la pulsación de tecla.
+            }
+
+            // 4. Permitir solo un separador decimal
+            // Si la tecla presionada es el separador decimal Y el TextBox ya contiene un separador decimal
+            if (e.KeyChar == decimalSeparator && ((TextBox)sender).Text.Contains(decimalSeparator))
+            {
+                e.Handled = true; // Ignorar la pulsación del separador decimal.
+            }
         }
     }
 }

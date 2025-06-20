@@ -36,6 +36,9 @@
             lbl_title = new Label();
             btn_salir = new Button();
             MenuVertical = new Panel();
+            submenuInscripciones = new Panel();
+            btnNoSocios = new Button();
+            btnSocios = new Button();
             logoChico = new PictureBox();
             logoGrande = new PictureBox();
             BarraTitulo = new Panel();
@@ -46,6 +49,7 @@
             btnslide = new PictureBox();
             panelContenedor = new Panel();
             MenuVertical.SuspendLayout();
+            submenuInscripciones.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)logoChico).BeginInit();
             ((System.ComponentModel.ISupportInitialize)logoGrande).BeginInit();
             BarraTitulo.SuspendLayout();
@@ -84,12 +88,13 @@
             btnCarnet.ForeColor = Color.White;
             btnCarnet.Image = (Image)resources.GetObject("btnCarnet.Image");
             btnCarnet.ImageAlign = ContentAlignment.MiddleLeft;
-            btnCarnet.Location = new Point(3, 240);
+            btnCarnet.Location = new Point(3, 237);
             btnCarnet.Name = "btnCarnet";
             btnCarnet.Size = new Size(250, 56);
             btnCarnet.TabIndex = 1;
             btnCarnet.Text = "Entregar Carnet";
             btnCarnet.UseVisualStyleBackColor = true;
+            btnCarnet.Click += btnCarnet_Click;
             // 
             // btnInstallment
             // 
@@ -101,7 +106,7 @@
             btnInstallment.ForeColor = Color.White;
             btnInstallment.Image = (Image)resources.GetObject("btnInstallment.Image");
             btnInstallment.ImageAlign = ContentAlignment.MiddleLeft;
-            btnInstallment.Location = new Point(3, 302);
+            btnInstallment.Location = new Point(3, 299);
             btnInstallment.Name = "btnInstallment";
             btnInstallment.Size = new Size(250, 56);
             btnInstallment.TabIndex = 2;
@@ -119,7 +124,7 @@
             btnList.ForeColor = Color.White;
             btnList.Image = (Image)resources.GetObject("btnList.Image");
             btnList.ImageAlign = ContentAlignment.MiddleLeft;
-            btnList.Location = new Point(3, 364);
+            btnList.Location = new Point(3, 361);
             btnList.Name = "btnList";
             btnList.Size = new Size(250, 56);
             btnList.TabIndex = 3;
@@ -130,11 +135,15 @@
             // lbl_title
             // 
             lbl_title.AutoSize = true;
-            lbl_title.Location = new Point(314, 9);
+            lbl_title.Font = new Font("Century Gothic", 21.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lbl_title.ForeColor = Color.FromArgb(255, 254, 254);
+            lbl_title.Location = new Point(47, 4);
             lbl_title.Name = "lbl_title";
-            lbl_title.Size = new Size(209, 15);
+            lbl_title.Size = new Size(597, 36);
             lbl_title.TabIndex = 4;
-            lbl_title.Text = "Sistema de Gestión del Club Deportivo";
+            lbl_title.Text = "SISTEMA DE GESTIÓN DEL CLUB DEPORTIVO";
+            lbl_title.Click += lbl_title_Click;
+            lbl_title.MouseDown += lbl_title_MouseDown;
             // 
             // btn_salir
             // 
@@ -156,6 +165,7 @@
             // MenuVertical
             // 
             MenuVertical.BackColor = Color.FromArgb(55, 53, 54);
+            MenuVertical.Controls.Add(submenuInscripciones);
             MenuVertical.Controls.Add(logoChico);
             MenuVertical.Controls.Add(logoGrande);
             MenuVertical.Controls.Add(btn_salir);
@@ -168,6 +178,56 @@
             MenuVertical.Name = "MenuVertical";
             MenuVertical.Size = new Size(250, 650);
             MenuVertical.TabIndex = 6;
+            // 
+            // submenuInscripciones
+            // 
+            submenuInscripciones.Controls.Add(btnNoSocios);
+            submenuInscripciones.Controls.Add(btnSocios);
+            submenuInscripciones.Location = new Point(2, 240);
+            submenuInscripciones.Name = "submenuInscripciones";
+            submenuInscripciones.Size = new Size(217, 115);
+            submenuInscripciones.TabIndex = 10;
+            submenuInscripciones.Visible = false;
+            // 
+            // btnNoSocios
+            // 
+            btnNoSocios.AutoSize = true;
+            btnNoSocios.BackColor = Color.White;
+            btnNoSocios.Dock = DockStyle.Top;
+            btnNoSocios.FlatAppearance.BorderSize = 0;
+            btnNoSocios.FlatAppearance.MouseOverBackColor = Color.FromArgb(248, 152, 52);
+            btnNoSocios.FlatStyle = FlatStyle.Flat;
+            btnNoSocios.Font = new Font("Century Gothic", 11.25F);
+            btnNoSocios.ForeColor = Color.FromArgb(55, 53, 54);
+            btnNoSocios.Image = (Image)resources.GetObject("btnNoSocios.Image");
+            btnNoSocios.ImageAlign = ContentAlignment.MiddleLeft;
+            btnNoSocios.Location = new Point(0, 56);
+            btnNoSocios.Name = "btnNoSocios";
+            btnNoSocios.Size = new Size(217, 56);
+            btnNoSocios.TabIndex = 9;
+            btnNoSocios.Text = "No Socios";
+            btnNoSocios.UseVisualStyleBackColor = false;
+            btnNoSocios.Click += btnNoSocios_Click;
+            // 
+            // btnSocios
+            // 
+            btnSocios.AutoSize = true;
+            btnSocios.BackColor = Color.White;
+            btnSocios.Dock = DockStyle.Top;
+            btnSocios.FlatAppearance.BorderSize = 0;
+            btnSocios.FlatAppearance.MouseOverBackColor = Color.FromArgb(248, 152, 52);
+            btnSocios.FlatStyle = FlatStyle.Flat;
+            btnSocios.Font = new Font("Century Gothic", 11.25F);
+            btnSocios.ForeColor = Color.FromArgb(55, 53, 54);
+            btnSocios.Image = (Image)resources.GetObject("btnSocios.Image");
+            btnSocios.ImageAlign = ContentAlignment.MiddleLeft;
+            btnSocios.Location = new Point(0, 0);
+            btnSocios.Name = "btnSocios";
+            btnSocios.Size = new Size(217, 56);
+            btnSocios.TabIndex = 8;
+            btnSocios.Text = "Socios";
+            btnSocios.UseVisualStyleBackColor = false;
+            btnSocios.Click += btnSocios_Click;
             // 
             // logoChico
             // 
@@ -183,10 +243,11 @@
             // 
             // logoGrande
             // 
+            logoGrande.Dock = DockStyle.Top;
             logoGrande.Image = (Image)resources.GetObject("logoGrande.Image");
             logoGrande.Location = new Point(0, 0);
             logoGrande.Name = "logoGrande";
-            logoGrande.Size = new Size(249, 165);
+            logoGrande.Size = new Size(250, 165);
             logoGrande.SizeMode = PictureBoxSizeMode.Zoom;
             logoGrande.TabIndex = 6;
             logoGrande.TabStop = false;
@@ -194,7 +255,7 @@
             // 
             // BarraTitulo
             // 
-            BarraTitulo.BackColor = Color.WhiteSmoke;
+            BarraTitulo.BackColor = Color.FromArgb(247, 152, 52);
             BarraTitulo.Controls.Add(iconminimizar);
             BarraTitulo.Controls.Add(iconrestaurar);
             BarraTitulo.Controls.Add(iconmaximizar);
@@ -206,6 +267,7 @@
             BarraTitulo.Name = "BarraTitulo";
             BarraTitulo.Size = new Size(1050, 50);
             BarraTitulo.TabIndex = 7;
+            BarraTitulo.Paint += BarraTitulo_Paint;
             BarraTitulo.MouseDown += BarraTitulo_MouseDown;
             // 
             // iconminimizar
@@ -278,23 +340,28 @@
             panelContenedor.BackColor = Color.WhiteSmoke;
             panelContenedor.Location = new Point(250, 48);
             panelContenedor.Name = "panelContenedor";
-            panelContenedor.Size = new Size(1050, 590);
+            panelContenedor.Size = new Size(1050, 602);
             panelContenedor.TabIndex = 8;
+            panelContenedor.Paint += panelContenedor_Paint;
             // 
             // formMain
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.WhiteSmoke;
             ClientSize = new Size(1300, 650);
-            Controls.Add(panelContenedor);
             Controls.Add(BarraTitulo);
             Controls.Add(MenuVertical);
+            Controls.Add(panelContenedor);
             FormBorderStyle = FormBorderStyle.None;
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "formMain";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Pantalla Principal";
             MenuVertical.ResumeLayout(false);
             MenuVertical.PerformLayout();
+            submenuInscripciones.ResumeLayout(false);
+            submenuInscripciones.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)logoChico).EndInit();
             ((System.ComponentModel.ISupportInitialize)logoGrande).EndInit();
             BarraTitulo.ResumeLayout(false);
@@ -325,5 +392,8 @@
         private PictureBox iconcerrar;
         private PictureBox iconminimizar;
         private PictureBox iconrestaurar;
+        private Button btnNoSocios;
+        private Button btnSocios;
+        private Panel submenuInscripciones;
     }
 }

@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
+using TpIntegrador.Datos;
 
 namespace TpIntegrador
 {
@@ -38,20 +39,44 @@ namespace TpIntegrador
 
         private void btn_register_Click(object sender, EventArgs e)
         {
-            DialogResult resultado = MessageBox.Show("¿Quieres registrar un socio?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if (resultado == DialogResult.Yes)
-            {
-                AbrirFormInPanel(new formSocio());
-            }
-            else
-            {
-                AbrirFormInPanel(new formNoSocio());
-            }
+            //submenuInscripciones.Visible = true;
+            submenuInscripciones.Visible = !submenuInscripciones.Visible;
+            //DialogResult resultado = MessageBox.Show("¿Quieres registrar un socio?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            //if (resultado == DialogResult.Yes)
+            //{
+            //    AbrirFormInPanel(new formSocio());
+            //}
+            //else
+            //{
+            //    AbrirFormInPanel(new formNoSocio());
+            //}
+        }
+
+
+
+        //private void submenuInscripciones_Paint(object sender, PaintEventArgs e)
+        //{
+        //    submenuInscripciones.Visible = true;
+        //}
+
+        private void btnSocios_Click(object sender, EventArgs e)
+        {
+            submenuInscripciones.Visible = false;
+            AbrirFormInPanel(new formSocio());
+        }
+
+        private void btnNoSocios_Click(object sender, EventArgs e)
+        {
+            submenuInscripciones.Visible = false;
+            AbrirFormInPanel(new formNoSocio());
         }
 
         private void btn_salir_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            if (MessageBox.Show("¿Seguro que quieres salir?", "Advertencia", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                Application.Exit();
+            }
         }
 
         private void btnslide_Click(object sender, EventArgs e)
@@ -95,7 +120,7 @@ namespace TpIntegrador
         private void iconrestaurar_Click(object sender, EventArgs e)
         {
             //this.WindowState = FormWindowState.Normal;
-            this.Size = new Size(1050, 600);
+            this.Size = new Size(1050, 652);
             this.Location = new Point(LX, LY);
             iconrestaurar.Visible = false;
             iconmaximizar.Visible = true;
@@ -133,5 +158,36 @@ namespace TpIntegrador
         {
             AbrirFormInPanel(new formCuotasVencidas());
         }
+
+        private void BarraTitulo_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void lbl_title_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lbl_title_MouseDown(object sender, MouseEventArgs e)
+        {
+            ReleaseCapture();
+            SendMessage(this.Handle, 0x112, 0xf012, 0);
+        }
+
+        private void btnCarnet_Click(object sender, EventArgs e)
+        {
+            AbrirFormInPanel(new formEntregaCarnet());
+        }
+
+        private void panelContenedor_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        //private void btnNoSocios_Click(object sender, EventArgs e)
+        //{
+
+        //}
     }
 }

@@ -100,6 +100,7 @@ namespace TpIntegrador.Datos
                         );
                         socio.AptoFisico = Convert.ToBoolean(reader["apto_fisico"]);
                         socio.FechaAlta = Convert.ToDateTime(reader["fecha_alta"]);
+                        socio.CarnetEntregado = Convert.ToBoolean(reader["carnet_entregado"]);
                         return socio;
                     }
                     else
@@ -119,6 +120,33 @@ namespace TpIntegrador.Datos
                     conexion.Close();
                 }
             }
+
+
+        }
+
+        public bool MarcarCarnetComoEntregado(int idSocio)
+        {
+            bool actualizado = false;
+
+            try
+            {
+                using (MySqlConnection conexion = Conexion.getInstancia().CrearConexion())
+                {
+                    conexion.Open();
+                    string query = "UPDATE socios SET carnet_entregado = 1 WHERE id = @idSocio";
+                    using (MySqlCommand cmd = new MySqlCommand(query, conexion))
+                    {
+                        cmd.Parameters.AddWithValue("@idSocio", idSocio);
+                        actualizado = cmd.ExecuteNonQuery() > 0;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al marcar carnet como entregado: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            return actualizado;
         }
     }
 }
